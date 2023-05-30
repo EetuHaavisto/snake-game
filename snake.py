@@ -1,12 +1,12 @@
 import pygame
 
-SNAKE_RADIUS = 10 # 10 pixels wide
-
+SNAKE_RADIUS = 10 # 2*10 pixels wide
+SNAKE_DIRECTION = "r"
 class Snake:
 
     def __init__(self, x, y):
         self.head = pygame.Rect(x,y,SNAKE_RADIUS,SNAKE_RADIUS)
-
+        self.direction = SNAKE_DIRECTION
 
     def move_snake(self, screen, delta_x, delta_y):
         # Get the coordinates for the old head
