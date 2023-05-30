@@ -1,21 +1,25 @@
 import pygame
 
+SNAKE_RADIUS = 10 # 10 pixels wide
 
 class Snake:
 
-    def __init__(self, x_coord, y_coord, color):
-
-        self.x = x_coord
-        self.y = y_coord
-        self.color = color
+    def __init__(self, x, y):
+        self.head = pygame.Rect(x,y,SNAKE_RADIUS,SNAKE_RADIUS)
 
 
-    def move_snake(self, new_x, new_y):
-        self.x = new_x
-        self.y = new_y
+    def move_snake(self, screen, delta_x, delta_y):
+        # Get the coordinates for the old head
+        old_ctr_x = self.head.centerx
+        old_ctr_y = self.head.centery
 
-    def draw_snake(self, screen):
+        # Erase (fill with black) the old snake head
+        pygame.draw.rect(surface=screen,color="black",rect=self.head)
 
-        pos = pygame.Vector2(self.x, self.y)
-        rad = 5 # 5 pixels as radius
-        pygame.draw.circle(screen,self.color,pos,rad)
+        self.head.centerx = old_ctr_x + delta_x
+        self.head.centery = old_ctr_y + delta_y
+        pygame.draw.rect(surface=screen, color="green", rect=self.head)
+
+
+
+

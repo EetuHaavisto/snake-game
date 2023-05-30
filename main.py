@@ -1,11 +1,21 @@
 import pygame
 from snake import *
 # game setup
+
 pygame.init()
-screen = pygame.display.set_mode((1280, 720))
+"""One surface is special -- the one you create with pygame.display.set_mode()
+Initialize a window or screen for display. This 'display surface' represents the screen;
+ whatever you do to it will appear on the user's screen."""
+screen = pygame.display.set_mode((800, 800))
 running = True
 
-snake = Snake(screen.get_width()/2, screen.get_height()/2,"white")
+
+MOVE = pygame.USEREVENT+0
+clock = pygame.time.Clock()
+pygame.time.set_timer(MOVE,500)
+snake = Snake(screen.get_width()/2-SNAKE_RADIUS, screen.get_height()/2+SNAKE_RADIUS)
+
+screen.fill("black")
 
 while running:
 
@@ -13,9 +23,13 @@ while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-    screen.fill("black")
-    snake.draw_snake(screen)
+
+        if event.type == MOVE:
+            snake.move_snake(screen,2*SNAKE_RADIUS,0)
 
 
-    pygame.display.flip() # Updates full screen, .update() updates part of the screen
+
+    pygame.display.update()
+    #pygame.display.flip() # Updates full screen, .update() updates part of the screen
+    clock.tick(60)
 pygame.quit()
