@@ -11,7 +11,7 @@ class Food(pygame.sprite.Sprite):
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface((FOOD_WIDTH, FOOD_WIDTH))
-        self.image.fill("red")
+        self.image.fill(RED)
         self.rect = self.image.get_rect()
         self.move_food()
 
