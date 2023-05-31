@@ -12,7 +12,6 @@ def main():
 
     # Frame rate
     clock = pygame.time.Clock()
-    fps = 60
 
     # Help variables
 
@@ -65,7 +64,7 @@ def main():
         # Update display
         pygame.display.flip()
 
-        clock.tick(fps)
+        clock.tick(FPS)
 
     pygame.quit()
 
