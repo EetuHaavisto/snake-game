@@ -1,5 +1,6 @@
-# Width of the snake
+# Width of the snake and food
 SNAKE_WIDTH = 15
+FOOD_WIDTH = 10
 
 # Screen dimensions
 SCREEN_WIDTH = 600
