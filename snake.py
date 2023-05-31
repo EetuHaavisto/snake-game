@@ -1,5 +1,5 @@
 import pygame
-from constants import SNAKE_WIDTH
+from constants import *
 
 
 class Snake(pygame.sprite.Sprite):
@@ -12,9 +12,10 @@ class Snake(pygame.sprite.Sprite):
         self.image = pygame.Surface((SNAKE_WIDTH, SNAKE_WIDTH))
         self.image.fill("green")
         self.rect = self.image.get_rect()
-
+        self.rect.x = SCREEN_WIDTH/2-SNAKE_WIDTH/2
+        self.rect.y = SCREEN_HEIGTH/2-SNAKE_WIDTH/2
         # Movement variables
-        self.speed = SNAKE_WIDTH / 2
+        self.speed = SNAKE_SPEED
         self.dir = "RIGHT"
         
 
