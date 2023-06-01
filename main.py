@@ -40,13 +40,13 @@ def main():
 
             # User presses LEFT/RIGHT/UP/DOWN
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_LEFT:
+                if event.key == pygame.K_LEFT and snake_head.dir != "RIGHT":
                     snake_head.dir = "LEFT"
-                elif event.key == pygame.K_RIGHT:
+                elif event.key == pygame.K_RIGHT and snake_head.dir != "LEFT":
                     snake_head.dir = "RIGHT"
-                elif event.key == pygame.K_UP:
+                elif event.key == pygame.K_UP and snake_head.dir != "DOWN":
                     snake_head.dir = "UP"
-                elif event.key == pygame.K_DOWN:
+                elif event.key == pygame.K_DOWN and snake_head.dir != "UP":
                     snake_head.dir = "DOWN"
         
         # Move snake head
