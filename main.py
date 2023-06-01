@@ -4,6 +4,17 @@ from snake import Snake
 from food import Food
 from snakebody import Snakebody
 
+def game_over_screen(screen):
+    text_font = pygame.font.SysFont("arial", 36)
+    text = text_font.render("GAME OVER", True, RED)
+    text_rect = text.get_rect()
+
+    text_rect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGTH // 2)
+
+    screen.fill(GREY)
+    screen.blit(text, text_rect)
+    pygame.display.flip()
+
 def main():
     pygame.init()
 
@@ -14,8 +25,9 @@ def main():
     # Frame rate
     clock = pygame.time.Clock()
 
-    # Help variables
-
+    # Game state
+    game_state = "game_over"
+    
     # Initialize game objects
     snake_head = Snake()
     food = Food()
@@ -32,7 +44,7 @@ def main():
     # Game loop
     running = True
     while running:
-        
+
         # Events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -46,9 +58,13 @@ def main():
                     snake_head.dir = "RIGHT"
                 elif event.key == pygame.K_UP and snake_head.dir != "DOWN":
                     snake_head.dir = "UP"
-                elif event.key == pygame.K_DOWN and snake_head.dir != "UPgit sta":
+                elif event.key == pygame.K_DOWN and snake_head.dir != "UP":
                     snake_head.dir = "DOWN"
         
+        if game_state == "game_over":
+            game_over_screen(screen)
+            continue
+
         # Move snake head
         snake_head_group.update()
 
