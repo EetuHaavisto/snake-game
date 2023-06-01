@@ -4,6 +4,16 @@ from snake import Snake
 from food import Food
 from snakebody import Snakebody
 
+def is_game_over(snake_head, snake_tail_group, screen):
+    # Screen has a type of pygame.Surface
+    if pygame.sprite.collide_rect(snake_head, snake_tail_group):
+        return True
+
+    screen_rect = screen.get_rect()
+    if not screen_rect.contains(snake_head):
+        return True
+
+    return False
 def main():
     pygame.init()
 
@@ -15,7 +25,7 @@ def main():
     clock = pygame.time.Clock()
 
     # Help variables
-
+    game_over = False
     # Initialize game objects
     snake_head = Snake()
     food = Food()
@@ -72,7 +82,8 @@ def main():
 
         # Update display
         pygame.display.flip()
-
+        if is_game_over(snake_head,snake_tail_group,screen=screen):
+            game_over = True
         clock.tick(FPS)
 
     pygame.quit()
