@@ -4,6 +4,33 @@ from snake import Snake
 from food import Food
 from snakebody import Snakebody
 
+
+def is_game_over(snake_head, snake_tail_group, screen):
+    # Screen has a type of pygame.Surface
+
+    # Collision between snake head and tail
+    if pygame.sprite.spritecollideany(snake_head,snake_tail_group) is not None:
+        return True
+
+    screen_rect = screen.get_rect()
+    if not screen_rect.contains(snake_head):
+        return True
+
+    return False
+
+
+def game_over_screen(screen):
+    text_font = pygame.font.SysFont("arial", 36)
+    text = text_font.render("GAME OVER", True, RED)
+    text_rect = text.get_rect()
+
+    text_rect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGTH // 2)
+
+    screen.fill(GREY)
+    screen.blit(text, text_rect)
+    pygame.display.flip()
+
+
 def main():
     pygame.init()
 
@@ -15,6 +42,7 @@ def main():
     clock = pygame.time.Clock()
 
     # Help variables
+    game_over = False
 
     # Initialize game objects
     snake_head = Snake()
@@ -32,7 +60,7 @@ def main():
     # Game loop
     running = True
     while running:
-        
+
         # Events
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -46,9 +74,13 @@ def main():
                     snake_head.dir = "RIGHT"
                 elif event.key == pygame.K_UP and snake_head.dir != "DOWN":
                     snake_head.dir = "UP"
-                elif event.key == pygame.K_DOWN and snake_head.dir != "UPgit sta":
+                elif event.key == pygame.K_DOWN and snake_head.dir != "UP":
                     snake_head.dir = "DOWN"
         
+        if game_over:
+            game_over_screen(screen)
+            continue
+
         # Move snake head
         snake_head_group.update()
 
@@ -72,7 +104,8 @@ def main():
 
         # Update display
         pygame.display.flip()
-
+        if is_game_over(snake_head,snake_tail_group,screen=screen):
+            game_over = True
         clock.tick(FPS)
 
     pygame.quit()
