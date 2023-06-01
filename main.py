@@ -2,6 +2,8 @@ import pygame
 from constants import *
 from snake import Snake
 from food import Food
+from snakebody import Snakebody
+
 
 def main():
     pygame.init()
@@ -16,7 +18,7 @@ def main():
     # Help variables
 
     # Initialize game objects
-    snake_head = Snake()
+    snake_head = Snake(SCREEN_WIDTH/2-SNAKE_WIDTH/2, SCREEN_HEIGTH/2-SNAKE_WIDTH/2, SNAKE_SPEED,"RIGHT", is_head=True)
     food = Food()
 
     # sprite.Group for snake body
@@ -50,9 +52,14 @@ def main():
         # Move snake head
         snake_head.update()
 
+        # Move rest of the snake
+
         # If snake eats food
         if snake_head.rect.colliderect(food.rect):
             food.move_food()
+            # When getting the first food and creating the first piece of tail:
+            if len(snake_body_group.sprites()) == 1:
+                new_piece = Snake(0,0,)
 
         # Backgroud / Erase previous frame
         screen.fill("grey")
@@ -67,6 +74,7 @@ def main():
         clock.tick(FPS)
 
     pygame.quit()
+
 
 if __name__ == "__main__":
     main()
