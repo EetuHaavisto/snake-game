@@ -46,7 +46,7 @@ def main():
                     snake_head.dir = "RIGHT"
                 elif event.key == pygame.K_UP and snake_head.dir != "DOWN":
                     snake_head.dir = "UP"
-                elif event.key == pygame.K_DOWN and snake_head.dir != "UP":
+                elif event.key == pygame.K_DOWN and snake_head.dir != "UPgit sta":
                     snake_head.dir = "DOWN"
         
         # Move snake head
