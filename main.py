@@ -20,8 +20,8 @@ def is_game_over(snake_head, snake_tail_group, screen):
 
 
 def game_over_screen(screen):
-    text_font = pygame.font.SysFont("arial", 36)
-    text = text_font.render("GAME OVER", True, RED)
+    text_font = pygame.font.SysFont("fixedsys", 50)
+    text = text_font.render("GAME OVER", True, FONT_COLOR)
     text_rect = text.get_rect()
 
     text_rect.center = (SCREEN_WIDTH // 2, SCREEN_HEIGTH // 2)
